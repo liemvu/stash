@@ -78,7 +78,7 @@ const CacheModelSchema = CollectionSchema(
   getId: _cacheModelGetId,
   getLinks: _cacheModelGetLinks,
   attach: _cacheModelAttach,
-  version: '3.1.0+1',
+  version: '3.1.8',
 );
 
 int _cacheModelEstimateSize(
