@@ -39,3 +39,4 @@ dependency_overrides:
     git:
       url: https://github.com/liemvu/stash.git
       ref: develop
+      path: packages/stash
