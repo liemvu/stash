@@ -47,18 +47,17 @@ abstract class IsarAdapter<M extends EntryModel> {
   /// * [name]: The partition name
   Future<void> create(String name) {
     if (!_partitions.containsKey(name)) {
-      return Isar.open([schema],
-              directory: path,
-              name: name,
-              maxSizeMiB: maxSizeMib ?? Isar.defaultMaxSizeMiB,
-              relaxedDurability: relaxedDurability ?? true,
-              compactOnLaunch: compactOnLaunch,
-              inspector: inspector ?? true)
-          .then((isar) {
-        _partitions[name] = isar;
+      final isar = Isar.openSync([schema],
+          directory: path,
+          name: name,
+          maxSizeMiB: maxSizeMib ?? Isar.defaultMaxSizeMiB,
+          relaxedDurability: relaxedDurability ?? true,
+          compactOnLaunch: compactOnLaunch,
+          inspector: inspector ?? true);
 
-        return Future.value();
-      });
+      _partitions[name] = isar;
+
+      return Future.value();
     }
 
     return Future.value();
